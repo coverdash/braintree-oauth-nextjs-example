@@ -82,7 +82,8 @@ export function NonceTrigger() {
           Payment Method Token
         </label>
         <p className="text-xs text-gray-500">
-          An existing Payment Method Token from Merchant A's Braintree account.
+          An existing Payment Method Token from Merchant A&apos;s Braintree
+          account.
         </p>
         <input
           type="text"

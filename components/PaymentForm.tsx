@@ -61,8 +61,9 @@ export function PaymentForm() {
         </ul>
       </p>
       <p className="text-xs text-gray-600">
-        If successful, the Transaction will be created in Merchant A's web
-        environment and will be available in Merchant B's Braintree account.
+        If successful, the Transaction will be created in Merchant A&apos;s web
+        environment and will be available in Merchant B&apos;s Braintree
+        account.
       </p>
       <div>
         <label
@@ -89,7 +90,8 @@ export function PaymentForm() {
           Payment Method Token
         </label>
         <p className="text-xs text-gray-500">
-          An existing Payment Method Token from Merchant A's Braintree account.
+          An existing Payment Method Token from Merchant A&apos;s Braintree
+          account.
         </p>
         <input
           type="text"

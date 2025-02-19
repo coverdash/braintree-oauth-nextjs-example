@@ -62,16 +62,16 @@ export function SubscriptionForm() {
             <code>BRAINTREE_MERCHANT_ID</code>.
           </li>
           <li>
-            A Plan exists in Merchant B's Braintree account so the Plan ID can
-            be entered in the form below.
+            A Plan exists in Merchant B&apos;s Braintree account so the Plan ID
+            can be entered in the form below.
           </li>
         </ul>
       </p>
       <p className="text-xs text-gray-600">
         If successful, a new Customer and Payment Method will be created in
-        Merchant B's Braintree account using the nonce created in the previous
-        step. In addition, a new Subscription will be created for that Customer
-        and their Payment Method.
+        Merchant B&apos;s Braintree account using the nonce created in the
+        previous step. In addition, a new Subscription will be created for that
+        Customer and their Payment Method.
       </p>
       <div>
         <label
