@@ -85,6 +85,7 @@ export async function exchangeToken(
   const xmlText = await response.text();
   // console.log("xmlText", xmlText);
   const xmlData = await parseXML(xmlText);
+  console.log("xmlData", xmlData);
   // Extract and format token data
   const formattedData = {
     accessToken: xmlData?.credentials["access-token"][0] ?? "",

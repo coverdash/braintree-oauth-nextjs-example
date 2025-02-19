@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useStorage } from "@/lib/storage";
 import { OAuthTokenResponse } from "@/lib/types";
 import { CheckCircle, XCircle } from "lucide-react";
@@ -12,52 +12,57 @@ const OAuthCallback = () => {
   );
   const [error, setError] = useState<string>("");
 
-  const handleCallback = useCallback(async () => {
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
-    const merchantId = params.get("merchantId");
+  useEffect(() => {
+    const handleCallback = async () => {
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
+      const merchantId = params.get("merchantId");
 
-    if (!code) {
-      setStatus("error");
-      setError("No authorization code received");
-      return;
-    }
-
-    try {
-      const response = await fetch("/api/oauth/token", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ code }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to exchange token");
+      if (!code) {
+        setStatus("error");
+        setError("No authorization code received");
+        return;
       }
 
-      const tokens: OAuthTokenResponse = await response.json();
+      try {
+        const response = await fetch("/api/oauth/token", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ code }),
+        });
 
-      TokenStorage.saveTokens({
-        access_token: tokens.accessToken,
-        refresh_token: tokens.refreshToken,
-        expires_at: tokens.expiresAt,
-        scope: tokens.scope,
-        merchant_id: merchantId ?? "",
-        payment_nonce: "",
-      });
+        console.log("response", response);
 
-      setStatus("success");
-      setTimeout(() => router.push("/"), 2000);
-    } catch (err) {
-      setStatus("error");
-      setError(err instanceof Error ? err.message : "Failed to exchange token");
-    }
-  }, [TokenStorage, router]);
+        if (!response.ok) {
+          throw new Error("Failed to exchange token");
+        }
 
-  useEffect(() => {
+        const tokens: OAuthTokenResponse = await response.json();
+
+        TokenStorage.saveTokens({
+          access_token: tokens.accessToken,
+          refresh_token: tokens.refreshToken,
+          expires_at: tokens.expiresAt,
+          scope: tokens.scope,
+          merchant_id: merchantId ?? "",
+          payment_nonce: "",
+        });
+
+        setStatus("success");
+        setTimeout(() => router.push("/"), 2000);
+      } catch (err) {
+        setStatus("error");
+        setError(
+          err instanceof Error ? err.message : "Failed to exchange token"
+        );
+      }
+    };
+
     handleCallback();
-  }, [handleCallback]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
