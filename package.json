@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "braintree": "^3.28.0",
+    "dayjs": "^1.11.13",
     "lucide-react": "^0.475.0",
     "next": "15.1.7",
     "node-fetch": "^3.3.2",
