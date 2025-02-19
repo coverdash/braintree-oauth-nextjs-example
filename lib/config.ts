@@ -1,7 +1,7 @@
 const origin =
   process.env.NEXT_PUBLIC_VERCEL_ENV === "development"
-    ? `http://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+    ? `http://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
+    : `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`;
 
 export const BRAINTREE_CONFIG = {
   merchantId: process.env.NEXT_PUBLIC_BRAINTREE_MERCHANT_ID,
