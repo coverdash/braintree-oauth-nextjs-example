@@ -80,9 +80,15 @@ BRAINTREE_OAUTH_CLIENT_SECRET=MERCHANT_A_OAUTH_CLIENT_SECRET
 BRAINTREE_MERCHANT_ID=MERCHANT_B_MERCHANT_ID
 BRAINTREE_PUBLIC_KEY=MERCHANT_B_PUBLIC_KEY
 BRAINTREE_PRIVATE_KEY=MERCHANT_B_PRIVATE_KEY
+
+# For development local development only
+NEXT_PUBLIC_VERCEL_ENV=development
+NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL=localhost:3000
 ```
 
-> ⚠️ **IMPORTANT**: The value that you use for `NEXT_PUBLIC_BRAINTREE_REDIRECT_URI` must match a value from the list of `Redirect URIs` in the Braintree OAuth app and should be a valid URL linking to this application.
+> ⚠️ **IMPORTANT**: The values that you use for `NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL` and `NEXT_PUBLIC_BRAINTREE_REDIRECT_URI` must combine to form a valid URL that matches one of the URLs in the list of `Redirect URIs` in the Braintree OAuth app and should be a valid URL linking to this application. In this case the Redirect URI in your Braintree OAuth app should be `http://localhost:3000/oauth-callback` and the `NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL` should be `localhost:3000`.
+
+> When hosted on Vercel, `NEXT_PUBLIC_VERCEL_ENV` and `NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL` will be automatically set. Make sure to check the Vercel deployment domain and add the Redirect URI to the list of `Redirect URIs` in the Braintree OAuth app as so: `https://<vercel-deployment-domain>/oauth-callback`.
 
 ## Running the Application
 
