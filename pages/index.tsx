@@ -1,114 +1,123 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+// import Image from "next/image";
+// import { Geist, Geist_Mono } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
+
+import { ConnectButton } from "@/components/ConnectButton";
+import { CustomerForm } from "@/components/CustomerForm";
+import { NonceTrigger } from "@/components/NonceTrigger";
+import { PaymentForm } from "@/components/PaymentForm";
+import { SubscriptionForm } from "@/components/SubscriptionForm";
+// import { NonceTrigger } from "@/components/NonceTrigger";
+// import { OAuthCallback } from "@/components/OAuthCallback";
+import { useStorage } from "@/lib/storage";
+// import { SubscriptionForm } from "@/components/SubscriptionForm";
+import { useState } from "react";
+// import { PaymentForm } from "@/components/PaymentForm";
+// import { CustomerForm } from "@/components/CustomerForm";
 
 export default function Home() {
-  return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              pages/index.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const {
+    access_token,
+    // refresh_token,
+    // merchant_id,
+    // scope,
+    // expires_at,
+    // payment_nonce,
+    clearTokens,
+  } = useStorage();
+  const isConnected = !!access_token;
+  const [view, setView] = useState("create-transaction");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="max-w-4xl w-full mx-auto p-6">
+        <h1 className="text-3xl font-bold text-center mb-8">
+          Braintree OAuth Integration
+        </h1>
+        <div className="bg-white p-8 rounded-lg shadow-md min-h-96">
+          {!isConnected ? (
+            <>
+              <h2 className="text-xl mb-4">Connect Your Braintree Account</h2>
+              <p className="text-gray-600 mb-6">
+                Click below to connect your Braintree account and enable payment
+                processing.
+              </p>
+              <ConnectButton />
+            </>
+          ) : (
+            <>
+              <p className="text-gray-600 mb-6">
+                Your account is connected. You can now process payments.
+              </p>
+              <div className="text-sm mb-6 flex gap-4">
+                <button
+                  className={`${
+                    view === "create-transaction"
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200 text-gray-600"
+                  } px-4 py-2 rounded-md`}
+                  onClick={() => setView("create-transaction")}
+                >
+                  Create Transaction
+                </button>
+                <button
+                  className={`${
+                    view === "create-customer"
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200 text-gray-600"
+                  } px-4 py-2 rounded-md`}
+                  onClick={() => setView("create-customer")}
+                >
+                  Create Customer
+                </button>
+                <button
+                  className={`${
+                    view === "create-nonce"
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200 text-gray-600"
+                  } px-4 py-2 rounded-md`}
+                  onClick={() => setView("create-nonce")}
+                >
+                  Create Nonce
+                </button>
+                <button
+                  className={`${
+                    view === "create-subscription"
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200 text-gray-600"
+                  } px-4 py-2 rounded-md`}
+                  onClick={() => setView("create-subscription")}
+                >
+                  Create Subscription
+                </button>
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded-md"
+                  onClick={() => {
+                    clearTokens();
+                    window.location.reload();
+                  }}
+                >
+                  Clear Tokens
+                </button>
+              </div>
+
+              {view === "create-transaction" && <PaymentForm />}
+              {view === "create-nonce" && <NonceTrigger />}
+              {view === "create-subscription" && <SubscriptionForm />}
+              {view === "create-customer" && <CustomerForm />}
+            </>
+          )}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
   );
 }
