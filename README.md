@@ -1,3 +1,20 @@
+# Braintree OAuth Integration Example
+
+This Next.js TypeScript project demonstrates a Braintree OAuth integration flow between two merchants. It showcases how Merchant A can obtain authorization from Merchant B to perform actions on their behalf using Braintree's OAuth and transaction APIs.
+
+Want to experience it firsthand in your own environment? Simply click the button below to deploy it in a matter of clicks:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fcoverdash%2Fbraintree-oauth-nextjs-example&env=NEXT_PUBLIC_BRAINTREE_ENVIRONMENT,NEXT_PUBLIC_BRAINTREE_MERCHANT_ID,NEXT_PUBLIC_BRAINTREE_OAUTH_CLIENT_ID,BRAINTREE_ENVIRONMENT,BRAINTREE_MERCHANT_ID,BRAINTREE_OAUTH_CLIENT_ID,BRAINTREE_OAUTH_CLIENT_SECRET,BRAINTREE_PUBLIC_KEY,BRAINTREE_PRIVATE_KEY,NEXT_PUBLIC__BRAINTREE_REDIRECT_URI)
+
+To authenticate the OAuth permissions request, a second Braintree account will be necessary for approval.
+
+## Overview
+
+In this example, Merchant A provides this application to Merchant B, allowing them to:
+
+- Grant OAuth permissions to Merchant A
+- Allow access to customer payment methods
+- Enable facilitated transactions
 - Create Subscriptions
 
 The integration uses the following Braintree APIs:
