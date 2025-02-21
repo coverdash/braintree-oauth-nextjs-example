@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useStorage } from "@/lib/storage";
-import { OAuthTokenResponse } from "@/lib/types";
+// import { OAuthTokenResponse } from "@/lib/types";
 import { CheckCircle, XCircle } from "lucide-react";
+import { OAuthToken } from "braintree";
 
 const OAuthCallback = () => {
   const TokenStorage = useStorage();
@@ -39,14 +40,14 @@ const OAuthCallback = () => {
           throw new Error("Failed to exchange token");
         }
 
-        const tokens: OAuthTokenResponse = await response.json();
+        const tokens: OAuthToken = await response.json();
 
         TokenStorage.saveTokens({
           access_token: tokens.accessToken,
           refresh_token: tokens.refreshToken,
           expires_at: tokens.expiresAt,
-          scope: tokens.scope,
-          merchant_id: merchantId ?? "",
+          scope: "", // tokens.scope,
+          merchant_id: merchantId || "",
           payment_nonce: "",
         });
 
