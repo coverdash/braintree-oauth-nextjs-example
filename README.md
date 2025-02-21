@@ -4,7 +4,7 @@ This Next.js TypeScript project demonstrates a Braintree OAuth integration flow 
 
 Want to experience it firsthand in your own environment? Simply click the button below to deploy it in a matter of clicks:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fcoverdash%2Fbraintree-oauth-nextjs-example&env=NEXT_PUBLIC_BRAINTREE_ENVIRONMENT,NEXT_PUBLIC_BRAINTREE_MERCHANT_ID,NEXT_PUBLIC_BRAINTREE_OAUTH_CLIENT_ID,BRAINTREE_ENVIRONMENT,BRAINTREE_MERCHANT_ID,BRAINTREE_OAUTH_CLIENT_ID,BRAINTREE_OAUTH_CLIENT_SECRET,BRAINTREE_PUBLIC_KEY,BRAINTREE_PRIVATE_KEY,NEXT_PUBLIC__BRAINTREE_REDIRECT_URI)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fcoverdash%2Fbraintree-oauth-nextjs-example&env=NEXT_PUBLIC_BRAINTREE_ENVIRONMENT,NEXT_PUBLIC_BRAINTREE_MERCHANT_ID,NEXT_PUBLIC_BRAINTREE_OAUTH_CLIENT_ID,BRAINTREE_ENVIRONMENT,BRAINTREE_MERCHANT_ID,BRAINTREE_OAUTH_CLIENT_ID,BRAINTREE_OAUTH_CLIENT_SECRET,BRAINTREE_PUBLIC_KEY,BRAINTREE_PRIVATE_KEY,NEXT_PUBLIC_BRAINTREE_REDIRECT_URI)
 
 To authenticate the OAuth permissions request, a second Braintree account will be necessary for approval.
 

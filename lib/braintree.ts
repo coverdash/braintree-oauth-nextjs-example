@@ -66,7 +66,9 @@ export async function exchangeToken(
   }
 
   const response = await fetch(
-    `https://${environment}.braintreegateway.com/oauth/access_tokens`,
+    `https://${
+      environment === "sandbox" ? "sandbox." : ""
+    }braintreegateway.com/oauth/access_tokens`,
     {
       method: "POST",
       headers: {
