@@ -61,7 +61,8 @@ yarn
 
 Create a `.env` file in the root directory with the following variables:
 
-**Note**: Remove prefix `client_id$sandbox$` and `client_secret$sandbox$` from the credentials provided by Braintree before adding them as environment variable values in the `.env` file. This prefix is hard-coded within the code to avoid issues with special characters. For example, `client_id$sandbox$1234567890` should be `1234567890`.
+> [!NOTE]
+> Remove prefix `client_id$sandbox$` and `client_secret$sandbox$` from the credentials provided by Braintree before adding them as environment variable values in the `.env` file. This prefix is hard-coded within the code to avoid issues with special characters. For example, `client_id$sandbox$1234567890` should be `1234567890`.
 
 ```env
 # Client Environment Variables (Merchant A)
@@ -86,7 +87,8 @@ NEXT_PUBLIC_VERCEL_ENV=development
 NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL=localhost:3000
 ```
 
-> ⚠️ **IMPORTANT**: The values that you use for `NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL` and `NEXT_PUBLIC_BRAINTREE_REDIRECT_URI` must combine to form a valid URL that matches one of the URLs in the list of `Redirect URIs` in the Braintree OAuth app and should be a valid URL linking to this application. In this case the Redirect URI in your Braintree OAuth app should be `http://localhost:3000/oauth-callback` and the `NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL` should be `localhost:3000`.
+> [!IMPORTANT]
+> The values that you use for `NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL` and `NEXT_PUBLIC_BRAINTREE_REDIRECT_URI` must combine to form a valid URL that matches one of the URLs in the list of `Redirect URIs` in the Braintree OAuth app and should be a valid URL linking to this application. In this case the Redirect URI in your Braintree OAuth app should be `http://localhost:3000/oauth-callback` and the `NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL` should be `localhost:3000`.
 
 > When hosted on Vercel, `NEXT_PUBLIC_VERCEL_ENV` and `NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL` will be automatically set. Make sure to check the Vercel deployment domain and add the Redirect URI to the list of `Redirect URIs` in the Braintree OAuth app as so: `https://<vercel-deployment-domain>/oauth-callback`.
 
@@ -108,7 +110,8 @@ The application will be available at:
 4. The application exchanges this code for access/refresh tokens
 5. Merchant A can now process transactions on Merchant B's behalf
 
-> ⚠️ **IMPORTANT NOTE**: Before running the application to authorize the accounts, make sure you are logged into the Braintree account of the organization that will be receiving the shared user/payment token in the same broswer where you will run this application and make the connection.
+> [!IMPORTANT]
+> Before running the application to authorize the accounts, make sure you are logged into the Braintree account of the organization that will be receiving the shared user/payment token in the same broswer where you will run this application and make the connection.
 
 ## API Endpoints
 
@@ -124,7 +127,8 @@ The application will be available at:
 - CORS is properly configured
 - Input validation is implemented
 
-> ⚠️ **WARNING**: This project is a demonstration and should not be used in production as-is. Ensure that all sensitive information, such as OAuth tokens and API keys, are stored securely and not in local storage. Follow best practices for security and data protection.
+> [!WARNING]
+> This project is a demonstration and should not be used in production as-is. Ensure that all sensitive information, such as OAuth tokens and API keys, are stored securely and not in local storage. Follow best practices for security and data protection.
 
 ## Token Storage
 
