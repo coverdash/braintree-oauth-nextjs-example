@@ -108,6 +108,8 @@ The application will be available at:
 4. The application exchanges this code for access/refresh tokens
 5. Merchant A can now process transactions on Merchant B's behalf
 
+> ⚠️ **IMPORTANT NOTE**: Before running the application to authorize the accounts, make sure you are logged into the Braintree account of the organization that will be receiving the shared user/payment token in the same broswer where you will run this application and make the connection.
+
 ## API Endpoints
 
 - `POST /api/oauth/token` - Exchange authorization code for tokens
